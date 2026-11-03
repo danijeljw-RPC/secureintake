@@ -52,6 +52,32 @@ public sealed class CliTests : IDisposable
     }
 
     [Fact]
+    public async Task Audit_verify_reports_organisations_by_their_external_id()
+    {
+        Assert.Equal(0, (await Run("migrate")).Code);
+        var org = await Run("organisations", "create", "--name", "Acme", "--slug", "acme", "--activate");
+        var orgId = org.Out.Split(' ')[0];
+
+        var verify = await Run("audit", "verify");
+        Assert.Equal(0, verify.Code);
+        Assert.Contains($"ok   {orgId} ", verify.Out, StringComparison.Ordinal);
+        Assert.DoesNotContain("org:", verify.Out, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public async Task Serve_reports_a_port_clash_as_a_clear_error()
+    {
+        using var occupier = new System.Net.Sockets.TcpListener(System.Net.IPAddress.Loopback, 0);
+        occupier.Start();
+        var url = $"http://127.0.0.1:{((System.Net.IPEndPoint)occupier.LocalEndpoint).Port}";
+
+        var serve = await Run("serve", $"--Http:Urls={url}");
+        Assert.Equal(6, serve.Code);
+        Assert.Contains("address already in use", serve.Err, StringComparison.Ordinal);
+        Assert.Contains("Http:Urls", serve.Err, StringComparison.Ordinal);
+    }
+
+    [Fact]
     public async Task Privileged_verbs_are_audited_with_the_operator_identity()
     {
         Assert.Equal(0, (await Run("migrate")).Code);

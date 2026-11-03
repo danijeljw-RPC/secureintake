@@ -33,12 +33,20 @@ public sealed class AuditCheckpointScheduler(JobStore jobs, TimeProvider time, T
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         using var timer = new PeriodicTimer(interval, time);
-        do
+        try
         {
-            var bucket = time.GetUtcNow().ToUnixTimeSeconds() / (long)interval.TotalSeconds;
-            await jobs.EnqueueAsync(new JobRequest(AuditCheckpointJob.Type, "{}", PriorityClass: PriorityClass.Essential,
-                IdempotencyKey: $"audit.checkpoint:{bucket}"), stoppingToken).ConfigureAwait(false);
+            do
+            {
+                var bucket = time.GetUtcNow().ToUnixTimeSeconds() / (long)interval.TotalSeconds;
+                await jobs.EnqueueAsync(new JobRequest(AuditCheckpointJob.Type, "{}", PriorityClass: PriorityClass.Essential,
+                    IdempotencyKey: $"audit.checkpoint:{bucket}"), stoppingToken).ConfigureAwait(false);
+            }
+            while (await timer.WaitForNextTickAsync(stoppingToken).ConfigureAwait(false));
         }
-        while (await timer.WaitForNextTickAsync(stoppingToken).ConfigureAwait(false));
+        catch (OperationCanceledException)
+        {
+            // Normal shutdown, including a host that stops because it failed to start.
+            // Not an error: the host would otherwise log it as a crashed background service.
+        }
     }
 }

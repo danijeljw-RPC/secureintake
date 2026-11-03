@@ -21,6 +21,19 @@ public sealed partial class JobDispatcher(JobStore jobs, IEnumerable<IJobHandler
         LogStarted(log, _workerId, options.Concurrency);
         var slots = new SemaphoreSlim(options.Concurrency, options.Concurrency);
         var running = new List<Task>();
+        try
+        {
+            await ClaimLoopAsync(slots, running, stoppingToken).ConfigureAwait(false);
+        }
+        catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested)
+        {
+            // Shutdown: stop claiming, then let in-flight jobs observe cancellation and finish below.
+        }
+        await Task.WhenAll(running).ConfigureAwait(false);
+    }
+
+    private async Task ClaimLoopAsync(SemaphoreSlim slots, List<Task> running, CancellationToken stoppingToken)
+    {
         while (!stoppingToken.IsCancellationRequested)
         {
             await slots.WaitAsync(stoppingToken).ConfigureAwait(false);
@@ -45,7 +58,6 @@ public sealed partial class JobDispatcher(JobStore jobs, IEnumerable<IJobHandler
             running.RemoveAll(t => t.IsCompleted);
             running.Add(RunAsync(job, slots, stoppingToken));
         }
-        await Task.WhenAll(running).ConfigureAwait(false);
     }
 
     /// <summary>Runs one claimed job. Exposed for tests and the host's <c>jobs run-once</c> verb.</summary>

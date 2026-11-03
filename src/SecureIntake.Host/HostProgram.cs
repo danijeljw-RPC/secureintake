@@ -184,7 +184,17 @@ internal static partial class HostProgram
                 LogPrivilegedRole(log, string.Join(' ', findings));
             }
         }
-        await app.RunAsync().ConfigureAwait(false);
+        try
+        {
+            await app.RunAsync().ConfigureAwait(false);
+        }
+        catch (IOException ex) when (ex.InnerException is Microsoft.AspNetCore.Connections.AddressInUseException)
+        {
+            await ctx.Err.WriteLineAsync(
+                $"error: cannot listen on {string.Join(", ", ctx.Settings.Urls)}: address already in use. " +
+                "Stop the other process or set Http:Urls (for example --Http:Urls=http://127.0.0.1:8081).").ConfigureAwait(false);
+            return 6;
+        }
         return 0;
     }
 
@@ -355,7 +365,7 @@ internal static partial class HostProgram
                 foreach (var r in results)
                 {
                     await ctx.Out.WriteLineAsync(string.Create(CultureInfo.InvariantCulture,
-                        $"{(r.IsValid ? "ok  " : "FAIL")} {r.Scope} records={r.Records} checkpoints={r.CheckpointsVerified}{(r.CheckpointsFailed > 0 ? $" failed_checkpoints={r.CheckpointsFailed}" : "")}{(r.FirstBadSeq is { } b ? $" first_bad_seq={b}" : "")}")).ConfigureAwait(false);
+                        $"{(r.IsValid ? "ok  " : "FAIL")} {DisplayScope(r.Scope)} records={r.Records} checkpoints={r.CheckpointsVerified}{(r.CheckpointsFailed > 0 ? $" failed_checkpoints={r.CheckpointsFailed}" : "")}{(r.FirstBadSeq is { } b ? $" first_bad_seq={b}" : "")}")).ConfigureAwait(false);
                 }
                 return results.All(r => r.IsValid) ? 0 : 3;
             }
@@ -365,6 +375,12 @@ internal static partial class HostProgram
     }
 
     // ── helpers ──────────────────────────────────────────────────────────────
+
+    // Audit chain scopes are stored as "org:<uuid>"; show operators the org_… ID they use everywhere else.
+    private static string DisplayScope(string scope) =>
+        scope.StartsWith("org:", StringComparison.Ordinal) && Guid.TryParse(scope.AsSpan(4), out var g)
+            ? new ExternalId(IdKind.Organisation, g).ToString()
+            : scope;
 
     private static Guid ParseOrg(string id) =>
         ExternalId.TryParse(id, IdKind.Organisation, out var parsed) ? parsed.Value.Value : throw new CliException($"'{id}' is not an organisation ID (org_…).");
