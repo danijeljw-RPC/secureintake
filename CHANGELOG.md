@@ -64,6 +64,7 @@ All notable changes to Secure Intake are recorded here. The format follows [Keep
 - Doc 26 is now marked as superseded by S1 for byte-level details.
 - Doc 28 now notes the grants that ADR-0004 blocks for service accounts.
 - **CI.** Workflows also run on pushes to `build/**` branches. The TypeScript job's actions are now pinned to commit SHAs (Node 24 runtime).
+- **Planning transcript removed.** `notes.txt` is deleted; its content lives in `docs/`. References now point to git history.
 - **README.** Adds a "What works today" section with an API walkthrough, and says where Development keeps its data.
 
 ### Known open items

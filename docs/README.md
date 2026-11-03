@@ -1,6 +1,6 @@
 # Secure Intake: Documentation
 
-This folder turns the architecture planning transcript in [`../notes.txt`](../notes.txt) (versions v1.8 to v4.7) into topic documents. On 2026-11-03 every open question was resolved, and the missing foundations (v1.0 to v1.7) and the lost end of v4.7 were planned fresh. The docs are now ready to plan implementation from.
+This folder turns the architecture planning transcript (versions v1.8 to v4.7; formerly `notes.txt`, removed from the repo, still in git history at commit `6db2a4d`) into topic documents. On 2026-11-03 every open question was resolved, and the missing foundations (v1.0 to v1.7) and the lost end of v4.7 were planned fresh. The docs are now ready to plan implementation from.
 
 ## Start here
 

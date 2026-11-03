@@ -1,6 +1,6 @@
 # Decision Log
 
-One line per confirmed architecture decision. The first table is the decisions from `notes.txt` (v1.8 to v4.7). Versions v1.0 to v1.7 were lost and are replaced by the **planning decisions** at the end of this file ([00-foundations.md](architecture/00-foundations.md)). Later decisions supersede earlier ones where they overlap. New decisions are ADRs in `docs/adr/`.
+One line per confirmed architecture decision. The first table is the decisions from the planning transcript (formerly `notes.txt`, v1.8 to v4.7). Versions v1.0 to v1.7 were lost and are replaced by the **planning decisions** at the end of this file ([00-foundations.md](architecture/00-foundations.md)). Later decisions supersede earlier ones where they overlap. New decisions are ADRs in `docs/adr/`.
 
 | Ver | Area | Decision | Doc |
 | --- | --- | --- | --- |
