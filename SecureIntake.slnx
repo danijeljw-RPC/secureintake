@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/SecureIntake.Api/SecureIntake.Api.csproj" />
+    <Project Path="src/SecureIntake.Application/SecureIntake.Application.csproj" />
+    <Project Path="src/SecureIntake.Contracts/SecureIntake.Contracts.csproj" />
+    <Project Path="src/SecureIntake.Cryptography/SecureIntake.Cryptography.csproj" />
+    <Project Path="src/SecureIntake.Domain/SecureIntake.Domain.csproj" />
+    <Project Path="src/SecureIntake.Host/SecureIntake.Host.csproj" />
+    <Project Path="src/SecureIntake.Infrastructure/SecureIntake.Infrastructure.csproj" />
+    <Project Path="src/SecureIntake.Worker/SecureIntake.Worker.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/SecureIntake.ArchitectureTests/SecureIntake.ArchitectureTests.csproj" />
+    <Project Path="tests/SecureIntake.IntegrationTests/SecureIntake.IntegrationTests.csproj" />
+    <Project Path="tests/SecureIntake.UnitTests/SecureIntake.UnitTests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Public DTOs and the permission catalogue. Shared with clients, so no server dependencies. -->
+  <ItemGroup>
+    <EmbeddedResource Include="Catalogue/permissions.json" LogicalName="SecureIntake.permissions.json" />
+  </ItemGroup>
+</Project>

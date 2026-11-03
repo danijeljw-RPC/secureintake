@@ -1,0 +1,933 @@
+{
+  "format": "secure-intake-permissions@1",
+  "catalogueVersion": "2026-11-03",
+  "permissions": [
+    {
+      "name": "platform.dashboard.view",
+      "scope": "platform",
+      "level": "standard"
+    },
+    {
+      "name": "platform.organisations.view",
+      "scope": "platform",
+      "level": "standard"
+    },
+    {
+      "name": "platform.organisations.provision",
+      "scope": "platform",
+      "level": "elevated"
+    },
+    {
+      "name": "platform.organisations.approve",
+      "scope": "platform",
+      "level": "elevated"
+    },
+    {
+      "name": "platform.organisations.suspend",
+      "scope": "platform",
+      "level": "elevated"
+    },
+    {
+      "name": "platform.organisations.delete",
+      "scope": "platform",
+      "level": "sensitive"
+    },
+    {
+      "name": "platform.quotas.manage",
+      "scope": "platform",
+      "level": "elevated"
+    },
+    {
+      "name": "platform.routing.manage",
+      "scope": "platform",
+      "level": "sensitive",
+      "note": "assignments, migration fences"
+    },
+    {
+      "name": "platform.policy.view",
+      "scope": "platform",
+      "level": "standard"
+    },
+    {
+      "name": "platform.policy.manage",
+      "scope": "platform",
+      "level": "sensitive",
+      "note": "deployment baseline"
+    },
+    {
+      "name": "platform.policy.grant_exception",
+      "scope": "platform",
+      "level": "sensitive"
+    },
+    {
+      "name": "platform.keys.view",
+      "scope": "platform",
+      "level": "standard"
+    },
+    {
+      "name": "platform.keys.manage_signing",
+      "scope": "platform",
+      "level": "sensitive",
+      "note": "activate, rotate, revoke"
+    },
+    {
+      "name": "platform.trust.manage",
+      "scope": "platform",
+      "level": "sensitive",
+      "note": "trust registries, foreign issuers"
+    },
+    {
+      "name": "platform.operations.jobs.view",
+      "scope": "platform",
+      "level": "standard"
+    },
+    {
+      "name": "platform.operations.jobs.manage",
+      "scope": "platform",
+      "level": "elevated",
+      "note": "retry, cancel, replay dead"
+    },
+    {
+      "name": "platform.operations.diagnostics.export",
+      "scope": "platform",
+      "level": "elevated"
+    },
+    {
+      "name": "platform.operations.maintenance",
+      "scope": "platform",
+      "level": "elevated",
+      "note": "fence, checkpoint, restore validate"
+    },
+    {
+      "name": "platform.audit.view",
+      "scope": "platform",
+      "level": "standard"
+    },
+    {
+      "name": "platform.audit.export",
+      "scope": "platform",
+      "level": "elevated"
+    },
+    {
+      "name": "platform.members.manage",
+      "scope": "platform",
+      "level": "elevated"
+    },
+    {
+      "name": "platform.service_accounts.manage",
+      "scope": "platform",
+      "level": "sensitive"
+    },
+    {
+      "name": "platform.emergency.activate",
+      "scope": "platform",
+      "level": "recovery"
+    },
+    {
+      "name": "org.settings.view",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.settings.manage",
+      "scope": "organisation",
+      "level": "elevated"
+    },
+    {
+      "name": "org.members.manage",
+      "scope": "organisation",
+      "level": "elevated"
+    },
+    {
+      "name": "org.teams.manage",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.branding.manage",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.domains.manage",
+      "scope": "organisation",
+      "level": "elevated"
+    },
+    {
+      "name": "org.policy.manage",
+      "scope": "organisation",
+      "level": "elevated",
+      "note": "strengthening overrides"
+    },
+    {
+      "name": "org.retention.manage",
+      "scope": "organisation",
+      "level": "elevated"
+    },
+    {
+      "name": "org.legal_hold.place",
+      "scope": "organisation",
+      "level": "elevated"
+    },
+    {
+      "name": "org.legal_hold.release",
+      "scope": "organisation",
+      "level": "sensitive"
+    },
+    {
+      "name": "org.dropboxes.view",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.dropboxes.manage",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.forms.manage",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.workflows.manage",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.grants.manage",
+      "scope": "organisation",
+      "level": "standard",
+      "note": "links, invitations"
+    },
+    {
+      "name": "org.grants.issue_api",
+      "scope": "organisation",
+      "level": "standard",
+      "note": "`api_issued` grants"
+    },
+    {
+      "name": "org.submissions.view_metadata",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.submissions.retrieve_ciphertext",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.submissions.review",
+      "scope": "organisation",
+      "level": "standard",
+      "note": "transition, notes, assign self"
+    },
+    {
+      "name": "org.submissions.assign",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.submissions.request_more_info",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.submissions.delete",
+      "scope": "organisation",
+      "level": "sensitive"
+    },
+    {
+      "name": "org.keys.view",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.keys.enrol_own",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.keys.policy.manage",
+      "scope": "organisation",
+      "level": "elevated"
+    },
+    {
+      "name": "org.keys.directory.sign",
+      "scope": "organisation",
+      "level": "elevated",
+      "note": "OKD snapshot"
+    },
+    {
+      "name": "org.keys.revoke",
+      "scope": "organisation",
+      "level": "elevated"
+    },
+    {
+      "name": "org.keys.export_authorise",
+      "scope": "organisation",
+      "level": "sensitive",
+      "note": "`.sik`"
+    },
+    {
+      "name": "org.keys.rewrap",
+      "scope": "organisation",
+      "level": "elevated",
+      "note": "add recipient to existing files"
+    },
+    {
+      "name": "org.recovery.activate",
+      "scope": "organisation",
+      "level": "sensitive"
+    },
+    {
+      "name": "org.evidence.export",
+      "scope": "organisation",
+      "level": "sensitive"
+    },
+    {
+      "name": "org.evidence.export_bulk",
+      "scope": "organisation",
+      "level": "sensitive"
+    },
+    {
+      "name": "org.evidence.import_archive",
+      "scope": "organisation",
+      "level": "elevated"
+    },
+    {
+      "name": "org.evidence.import_restore",
+      "scope": "organisation",
+      "level": "sensitive"
+    },
+    {
+      "name": "org.notifications.manage",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.webhooks.manage",
+      "scope": "organisation",
+      "level": "elevated"
+    },
+    {
+      "name": "org.usage.view",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.audit.view",
+      "scope": "organisation",
+      "level": "standard"
+    },
+    {
+      "name": "org.audit.export",
+      "scope": "organisation",
+      "level": "elevated"
+    },
+    {
+      "name": "org.service_accounts.manage",
+      "scope": "organisation",
+      "level": "sensitive"
+    }
+  ],
+  "roles": [
+    {
+      "id": "admin",
+      "scope": "organisation",
+      "grants": [
+        {
+          "permission": "org.settings.view"
+        },
+        {
+          "permission": "org.settings.manage"
+        },
+        {
+          "permission": "org.members.manage"
+        },
+        {
+          "permission": "org.teams.manage"
+        },
+        {
+          "permission": "org.branding.manage"
+        },
+        {
+          "permission": "org.domains.manage"
+        },
+        {
+          "permission": "org.dropboxes.view"
+        },
+        {
+          "permission": "org.dropboxes.manage"
+        },
+        {
+          "permission": "org.forms.manage"
+        },
+        {
+          "permission": "org.workflows.manage"
+        },
+        {
+          "permission": "org.grants.manage"
+        },
+        {
+          "permission": "org.submissions.view_metadata"
+        },
+        {
+          "permission": "org.submissions.assign"
+        },
+        {
+          "permission": "org.keys.view"
+        },
+        {
+          "permission": "org.evidence.import_archive"
+        },
+        {
+          "permission": "org.notifications.manage"
+        },
+        {
+          "permission": "org.webhooks.manage"
+        },
+        {
+          "permission": "org.usage.view"
+        }
+      ],
+      "eligible": []
+    },
+    {
+      "id": "api_client",
+      "scope": "organisation",
+      "grants": [
+        {
+          "permission": "org.dropboxes.view"
+        }
+      ],
+      "eligible": [
+        "org.dropboxes.manage",
+        "org.grants.manage",
+        "org.grants.issue_api",
+        "org.submissions.view_metadata",
+        "org.submissions.retrieve_ciphertext",
+        "org.keys.enrol_own",
+        "org.usage.view"
+      ],
+      "blockedForServiceAccounts": [
+        "org.webhooks.manage"
+      ]
+    },
+    {
+      "id": "auditor",
+      "scope": "organisation",
+      "grants": [
+        {
+          "permission": "org.settings.view"
+        },
+        {
+          "permission": "org.dropboxes.view"
+        },
+        {
+          "permission": "org.submissions.view_metadata"
+        },
+        {
+          "permission": "org.keys.view"
+        },
+        {
+          "permission": "org.usage.view"
+        },
+        {
+          "permission": "org.audit.view"
+        },
+        {
+          "permission": "org.audit.export"
+        }
+      ],
+      "eligible": []
+    },
+    {
+      "id": "dropbox_manager",
+      "scope": "organisation",
+      "grants": [
+        {
+          "permission": "org.settings.view"
+        },
+        {
+          "permission": "org.dropboxes.view"
+        },
+        {
+          "permission": "org.dropboxes.manage"
+        },
+        {
+          "permission": "org.forms.manage"
+        },
+        {
+          "permission": "org.workflows.manage"
+        },
+        {
+          "permission": "org.grants.manage"
+        },
+        {
+          "permission": "org.submissions.view_metadata"
+        },
+        {
+          "permission": "org.notifications.manage"
+        },
+        {
+          "permission": "org.usage.view"
+        }
+      ],
+      "eligible": []
+    },
+    {
+      "id": "owner",
+      "scope": "organisation",
+      "grants": [
+        {
+          "permission": "org.settings.view"
+        },
+        {
+          "permission": "org.settings.manage"
+        },
+        {
+          "permission": "org.members.manage"
+        },
+        {
+          "permission": "org.teams.manage"
+        },
+        {
+          "permission": "org.branding.manage"
+        },
+        {
+          "permission": "org.domains.manage"
+        },
+        {
+          "permission": "org.policy.manage"
+        },
+        {
+          "permission": "org.retention.manage"
+        },
+        {
+          "permission": "org.legal_hold.place"
+        },
+        {
+          "permission": "org.legal_hold.release"
+        },
+        {
+          "permission": "org.dropboxes.view"
+        },
+        {
+          "permission": "org.dropboxes.manage"
+        },
+        {
+          "permission": "org.forms.manage"
+        },
+        {
+          "permission": "org.workflows.manage"
+        },
+        {
+          "permission": "org.grants.manage"
+        },
+        {
+          "permission": "org.submissions.view_metadata"
+        },
+        {
+          "permission": "org.submissions.assign"
+        },
+        {
+          "permission": "org.submissions.delete"
+        },
+        {
+          "permission": "org.keys.view"
+        },
+        {
+          "permission": "org.keys.policy.manage"
+        },
+        {
+          "permission": "org.keys.directory.sign"
+        },
+        {
+          "permission": "org.keys.revoke"
+        },
+        {
+          "permission": "org.recovery.activate"
+        },
+        {
+          "permission": "org.evidence.export"
+        },
+        {
+          "permission": "org.evidence.export_bulk"
+        },
+        {
+          "permission": "org.evidence.import_archive"
+        },
+        {
+          "permission": "org.evidence.import_restore"
+        },
+        {
+          "permission": "org.notifications.manage"
+        },
+        {
+          "permission": "org.webhooks.manage"
+        },
+        {
+          "permission": "org.usage.view"
+        },
+        {
+          "permission": "org.audit.view"
+        },
+        {
+          "permission": "org.audit.export"
+        },
+        {
+          "permission": "org.service_accounts.manage"
+        }
+      ],
+      "eligible": []
+    },
+    {
+      "id": "reviewer",
+      "scope": "organisation",
+      "grants": [
+        {
+          "permission": "org.dropboxes.view"
+        },
+        {
+          "permission": "org.submissions.view_metadata"
+        },
+        {
+          "permission": "org.submissions.retrieve_ciphertext"
+        },
+        {
+          "permission": "org.submissions.review"
+        },
+        {
+          "permission": "org.submissions.assign",
+          "qualifier": "lead"
+        },
+        {
+          "permission": "org.submissions.request_more_info"
+        },
+        {
+          "permission": "org.keys.view",
+          "qualifier": "own"
+        },
+        {
+          "permission": "org.keys.enrol_own"
+        },
+        {
+          "permission": "org.keys.export_authorise",
+          "qualifier": "own"
+        },
+        {
+          "permission": "org.keys.rewrap"
+        },
+        {
+          "permission": "org.evidence.export"
+        }
+      ],
+      "eligible": []
+    },
+    {
+      "id": "security_officer",
+      "scope": "organisation",
+      "grants": [
+        {
+          "permission": "org.settings.view"
+        },
+        {
+          "permission": "org.policy.manage"
+        },
+        {
+          "permission": "org.retention.manage"
+        },
+        {
+          "permission": "org.legal_hold.place"
+        },
+        {
+          "permission": "org.legal_hold.release"
+        },
+        {
+          "permission": "org.dropboxes.view"
+        },
+        {
+          "permission": "org.submissions.view_metadata"
+        },
+        {
+          "permission": "org.submissions.delete"
+        },
+        {
+          "permission": "org.keys.view"
+        },
+        {
+          "permission": "org.keys.enrol_own"
+        },
+        {
+          "permission": "org.keys.policy.manage"
+        },
+        {
+          "permission": "org.keys.directory.sign"
+        },
+        {
+          "permission": "org.keys.revoke"
+        },
+        {
+          "permission": "org.keys.export_authorise"
+        },
+        {
+          "permission": "org.keys.rewrap"
+        },
+        {
+          "permission": "org.recovery.activate"
+        },
+        {
+          "permission": "org.evidence.export"
+        },
+        {
+          "permission": "org.evidence.export_bulk"
+        },
+        {
+          "permission": "org.evidence.import_archive"
+        },
+        {
+          "permission": "org.evidence.import_restore"
+        },
+        {
+          "permission": "org.usage.view"
+        },
+        {
+          "permission": "org.audit.view"
+        },
+        {
+          "permission": "org.audit.export"
+        },
+        {
+          "permission": "org.service_accounts.manage"
+        }
+      ],
+      "eligible": []
+    },
+    {
+      "id": "admin",
+      "scope": "platform",
+      "grants": [
+        {
+          "permission": "platform.dashboard.view"
+        },
+        {
+          "permission": "platform.organisations.view"
+        },
+        {
+          "permission": "platform.organisations.provision"
+        },
+        {
+          "permission": "platform.organisations.approve"
+        },
+        {
+          "permission": "platform.organisations.suspend"
+        },
+        {
+          "permission": "platform.quotas.manage"
+        },
+        {
+          "permission": "platform.policy.view"
+        },
+        {
+          "permission": "platform.keys.view"
+        },
+        {
+          "permission": "platform.operations.jobs.view"
+        },
+        {
+          "permission": "platform.members.manage"
+        }
+      ],
+      "eligible": []
+    },
+    {
+      "id": "auditor",
+      "scope": "platform",
+      "grants": [
+        {
+          "permission": "platform.dashboard.view"
+        },
+        {
+          "permission": "platform.organisations.view"
+        },
+        {
+          "permission": "platform.policy.view"
+        },
+        {
+          "permission": "platform.keys.view"
+        },
+        {
+          "permission": "platform.audit.view"
+        },
+        {
+          "permission": "platform.audit.export"
+        }
+      ],
+      "eligible": []
+    },
+    {
+      "id": "operator",
+      "scope": "platform",
+      "grants": [
+        {
+          "permission": "platform.dashboard.view"
+        },
+        {
+          "permission": "platform.organisations.view"
+        },
+        {
+          "permission": "platform.routing.manage"
+        },
+        {
+          "permission": "platform.operations.jobs.view"
+        },
+        {
+          "permission": "platform.operations.jobs.manage"
+        },
+        {
+          "permission": "platform.operations.diagnostics.export"
+        },
+        {
+          "permission": "platform.operations.maintenance"
+        }
+      ],
+      "eligible": []
+    },
+    {
+      "id": "owner",
+      "scope": "platform",
+      "grants": [
+        {
+          "permission": "platform.dashboard.view"
+        },
+        {
+          "permission": "platform.organisations.view"
+        },
+        {
+          "permission": "platform.organisations.provision"
+        },
+        {
+          "permission": "platform.organisations.approve"
+        },
+        {
+          "permission": "platform.organisations.suspend"
+        },
+        {
+          "permission": "platform.organisations.delete"
+        },
+        {
+          "permission": "platform.quotas.manage"
+        },
+        {
+          "permission": "platform.routing.manage"
+        },
+        {
+          "permission": "platform.policy.view"
+        },
+        {
+          "permission": "platform.policy.manage"
+        },
+        {
+          "permission": "platform.policy.grant_exception"
+        },
+        {
+          "permission": "platform.keys.view"
+        },
+        {
+          "permission": "platform.keys.manage_signing"
+        },
+        {
+          "permission": "platform.trust.manage"
+        },
+        {
+          "permission": "platform.operations.jobs.view"
+        },
+        {
+          "permission": "platform.operations.jobs.manage"
+        },
+        {
+          "permission": "platform.operations.diagnostics.export"
+        },
+        {
+          "permission": "platform.operations.maintenance"
+        },
+        {
+          "permission": "platform.audit.view"
+        },
+        {
+          "permission": "platform.audit.export"
+        },
+        {
+          "permission": "platform.members.manage"
+        },
+        {
+          "permission": "platform.service_accounts.manage"
+        },
+        {
+          "permission": "platform.emergency.activate"
+        }
+      ],
+      "eligible": []
+    },
+    {
+      "id": "provisioning_client",
+      "scope": "platform",
+      "grants": [
+        {
+          "permission": "platform.organisations.view"
+        }
+      ],
+      "eligible": [],
+      "blockedForServiceAccounts": [
+        "platform.organisations.provision"
+      ]
+    },
+    {
+      "id": "security_admin",
+      "scope": "platform",
+      "grants": [
+        {
+          "permission": "platform.dashboard.view"
+        },
+        {
+          "permission": "platform.organisations.view"
+        },
+        {
+          "permission": "platform.organisations.suspend"
+        },
+        {
+          "permission": "platform.policy.view"
+        },
+        {
+          "permission": "platform.policy.manage"
+        },
+        {
+          "permission": "platform.policy.grant_exception"
+        },
+        {
+          "permission": "platform.keys.view"
+        },
+        {
+          "permission": "platform.keys.manage_signing"
+        },
+        {
+          "permission": "platform.trust.manage"
+        },
+        {
+          "permission": "platform.audit.view"
+        },
+        {
+          "permission": "platform.audit.export"
+        },
+        {
+          "permission": "platform.service_accounts.manage"
+        },
+        {
+          "permission": "platform.emergency.activate"
+        }
+      ],
+      "eligible": []
+    }
+  ]
+}

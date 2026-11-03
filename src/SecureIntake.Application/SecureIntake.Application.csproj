@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Use cases, authorisation evaluators and policies. Talks to storage only through Abstractions. -->
+  <ItemGroup>
+    <ProjectReference Include="../SecureIntake.Domain/SecureIntake.Domain.csproj" />
+    <ProjectReference Include="../SecureIntake.Contracts/SecureIntake.Contracts.csproj" />
+  </ItemGroup>
+</Project>

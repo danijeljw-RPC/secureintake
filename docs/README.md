@@ -4,11 +4,12 @@ This folder turns the architecture planning transcript in [`../notes.txt`](../no
 
 ## Start here
 
-1. **[REVIEW.md](REVIEW.md)**: the cover note. What was decided, what to check first, and what only you can do.
-2. [architecture/01-overview.md](architecture/01-overview.md): what the product is, non-goals, system context, glossary.
-3. [architecture/00-foundations.md](architecture/00-foundations.md): base decisions (stack, modules, IDs, dropbox, revisions, audit, jobs, profiles).
-4. [architecture/25-implementation-roadmap.md](architecture/25-implementation-roadmap.md): the v1.0 scope and milestones M0 to M4.
-5. [DECISIONS.md](DECISIONS.md): one-line log of every decision. [QUESTIONS.md](QUESTIONS.md) is the resolution register.
+1. **[BUILD-STATUS.md](BUILD-STATUS.md)**: what code exists so far, what's verified, and what's flagged for review.
+2. **[REVIEW.md](REVIEW.md)**: the planning cover note. What was decided, what to check first, and what only you can do.
+3. [architecture/01-overview.md](architecture/01-overview.md): what the product is, non-goals, system context, glossary.
+4. [architecture/00-foundations.md](architecture/00-foundations.md): base decisions (stack, modules, IDs, dropbox, revisions, audit, jobs, profiles).
+5. [architecture/25-implementation-roadmap.md](architecture/25-implementation-roadmap.md): the v1.0 scope and milestones M0 to M4.
+6. [DECISIONS.md](DECISIONS.md): one-line log of every decision. [QUESTIONS.md](QUESTIONS.md) is the resolution register.
 
 ## Architecture documents
 
@@ -50,4 +51,4 @@ This folder turns the architecture planning transcript in [`../notes.txt`](../no
 - Code samples (C#, TypeScript, SQL, JSON) are **illustrative contracts**, not final implementations. Production values are in [27](architecture/27-production-defaults.md), not in the samples.
 - Product name **Secure Intake**, server CLI **`secureintake`**, client CLI **`secureintake-client`**.
 - The notes' v1.8 to v4.7 numbering appears only as a source reference. It's not a product version. Product releases are v1.0, v1.1 and so on ([25](architecture/25-implementation-roadmap.md)).
-- New decisions go into ADRs in `docs/adr/` (created in M0).
+- New decisions go into ADRs in [`adr/`](adr/README.md).

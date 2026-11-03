@@ -1,0 +1,11 @@
+{
+  "name": "@secureintake/crypto-protocol",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SI-E2EE-1 and SI-JCS-1 for the browser portal. WebCrypto only, no runtime dependencies. PROVISIONAL, pending crypto review.",
+  "type": "module",
+  "engines": { "node": ">=23.6" },
+  "scripts": {
+    "test": "node --test test/*.test.ts"
+  }
+}

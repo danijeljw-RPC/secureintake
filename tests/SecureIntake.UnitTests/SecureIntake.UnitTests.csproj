@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" />
+    <PackageReference Include="Microsoft.Extensions.TimeProvider.Testing" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/SecureIntake.Domain/SecureIntake.Domain.csproj" />
+    <ProjectReference Include="../../src/SecureIntake.Cryptography/SecureIntake.Cryptography.csproj" />
+    <ProjectReference Include="../../src/SecureIntake.Contracts/SecureIntake.Contracts.csproj" />
+    <ProjectReference Include="../../src/SecureIntake.Application/SecureIntake.Application.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+</Project>

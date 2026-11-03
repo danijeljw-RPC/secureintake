@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <!-- Composition root: secureintake serve (role all, api or worker) plus host CLI verbs. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>secureintake</AssemblyName>
+    <RootNamespace>SecureIntake.Host</RootNamespace>
+    <PublishAot>true</PublishAot>
+    <EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>
+    <StripSymbols>true</StripSymbols>
+    <IlcGenerateStackTraceData>false</IlcGenerateStackTraceData>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../SecureIntake.Api/SecureIntake.Api.csproj" />
+    <ProjectReference Include="../SecureIntake.Worker/SecureIntake.Worker.csproj" />
+    <ProjectReference Include="../SecureIntake.Infrastructure/SecureIntake.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="SecureIntake.IntegrationTests" />
+  </ItemGroup>
+</Project>

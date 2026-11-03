@@ -1,0 +1,208 @@
+{
+  "format": "secure-intake-test-vectors@1",
+  "profile": "SI-JCS-1",
+  "status": "provisional",
+  "notes": "input is JSON text; inputHex is raw bytes. canonical is the expected output as text, canonicalHex its exact UTF-8 bytes.",
+  "valid": [
+    {
+      "name": "sort-basic",
+      "input": "{\"b\":2,\"a\":1}",
+      "canonical": "{\"a\":1,\"b\":2}",
+      "canonicalHex": "7b2261223a312c2262223a327d"
+    },
+    {
+      "name": "rfc8785-sort-utf16",
+      "input": "{ \"\\u20ac\": 3, \"\\r\": 1, \"\\ufb33\": 5, \"1\": 2, \"\\ud83d\\ude00\": 4 }",
+      "canonical": "{\"\\r\":1,\"1\":2,\"\u20ac\":3,\"\ud83d\ude00\":4,\"\ufb33\":5}",
+      "canonicalHex": "7b225c72223a312c2231223a322c22e282ac223a332c22f09f9880223a342c22efacb3223a357d"
+    },
+    {
+      "name": "sort-case-and-punctuation",
+      "input": "{\"a\":1,\"B\":2,\"_\":3}",
+      "canonical": "{\"B\":2,\"_\":3,\"a\":1}",
+      "canonicalHex": "7b2242223a322c225f223a332c2261223a317d"
+    },
+    {
+      "name": "whitespace-and-nesting",
+      "input": " { \"c\" : { } ,\n\t\"a\" : [ true , false , null , { \"b\" : -5 } ] }\r\n",
+      "canonical": "{\"a\":[true,false,null,{\"b\":-5}],\"c\":{}}",
+      "canonicalHex": "7b2261223a5b747275652c66616c73652c6e756c6c2c7b2262223a2d357d5d2c2263223a7b7d7d"
+    },
+    {
+      "name": "boundary-integers",
+      "input": "[9007199254740991,-9007199254740991,0,-1,1]",
+      "canonical": "[9007199254740991,-9007199254740991,0,-1,1]",
+      "canonicalHex": "5b393030373139393235343734303939312c2d393030373139393235343734303939312c302c2d312c315d"
+    },
+    {
+      "name": "escapes-minimal",
+      "input": "\"\\u000F\\n\\\"\\\\\\u00e9\\/<>\"",
+      "canonical": "\"\\u000f\\n\\\"\\\\\u00e9/<>\"",
+      "canonicalHex": "225c75303030665c6e5c225c5cc3a92f3c3e22"
+    },
+    {
+      "name": "escapes-controls",
+      "input": "\"\\b\\f\\t\\u001f\\u0000\\u007f\\u2028\"",
+      "canonical": "\"\\b\\f\\t\\u001f\\u0000\u007f\u2028\"",
+      "canonicalHex": "225c625c665c745c75303031665c75303030307fe280a822"
+    },
+    {
+      "name": "surrogate-pair-escaped",
+      "input": "\"\\ud83d\\ude00\"",
+      "canonical": "\"\ud83d\ude00\"",
+      "canonicalHex": "22f09f988022"
+    },
+    {
+      "name": "surrogate-pair-raw",
+      "input": "\"\ud83d\ude00\"",
+      "canonical": "\"\ud83d\ude00\"",
+      "canonicalHex": "22f09f988022"
+    },
+    {
+      "name": "empty-containers",
+      "input": "[[],{},\"\"]",
+      "canonical": "[[],{},\"\"]",
+      "canonicalHex": "5b5b5d2c7b7d2c22225d"
+    },
+    {
+      "name": "scalar-number",
+      "input": " 42 ",
+      "canonical": "42",
+      "canonicalHex": "3432"
+    },
+    {
+      "name": "scalar-null",
+      "input": "null",
+      "canonical": "null",
+      "canonicalHex": "6e756c6c"
+    },
+    {
+      "name": "depth-64",
+      "input": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+      "canonical": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]",
+      "canonicalHex": "5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5b5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d"
+    }
+  ],
+  "invalid": [
+    {
+      "name": "fraction",
+      "input": "{\"a\":1.5}"
+    },
+    {
+      "name": "fraction-integral",
+      "input": "{\"a\":1.0}"
+    },
+    {
+      "name": "exponent",
+      "input": "{\"a\":1e3}"
+    },
+    {
+      "name": "exponent-upper",
+      "input": "{\"a\":1E3}"
+    },
+    {
+      "name": "exponent-zero",
+      "input": "{\"a\":1e0}"
+    },
+    {
+      "name": "negative-zero",
+      "input": "-0"
+    },
+    {
+      "name": "negative-zero-nested",
+      "input": "[-0]"
+    },
+    {
+      "name": "above-safe",
+      "input": "9007199254740992"
+    },
+    {
+      "name": "below-safe",
+      "input": "-9007199254740992"
+    },
+    {
+      "name": "huge",
+      "input": "123456789012345678901234567890"
+    },
+    {
+      "name": "leading-zero",
+      "input": "01"
+    },
+    {
+      "name": "plus-sign",
+      "input": "+1"
+    },
+    {
+      "name": "bare-fraction",
+      "input": ".5"
+    },
+    {
+      "name": "nan",
+      "input": "NaN"
+    },
+    {
+      "name": "infinity",
+      "input": "Infinity"
+    },
+    {
+      "name": "duplicate",
+      "input": "{\"a\":1,\"a\":2}"
+    },
+    {
+      "name": "duplicate-after-unescape",
+      "input": "{\"a\":1,\"\\u0061\":2}"
+    },
+    {
+      "name": "lone-high-surrogate",
+      "input": "\"\\ud800\""
+    },
+    {
+      "name": "lone-low-surrogate",
+      "input": "\"\\udc00\""
+    },
+    {
+      "name": "lone-surrogate-key",
+      "input": "{\"\\ud800\":1}"
+    },
+    {
+      "name": "trailing-comma",
+      "input": "[1,]"
+    },
+    {
+      "name": "comment",
+      "input": "/*x*/{}"
+    },
+    {
+      "name": "trailing-content",
+      "input": "{} {}"
+    },
+    {
+      "name": "single-quotes",
+      "input": "{'a':1}"
+    },
+    {
+      "name": "depth-65",
+      "input": "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]"
+    },
+    {
+      "name": "empty",
+      "input": ""
+    },
+    {
+      "name": "invalid-utf8",
+      "inputHex": "22ff22"
+    },
+    {
+      "name": "bom",
+      "inputHex": "efbbbf7b7d"
+    },
+    {
+      "name": "raw-control-in-string",
+      "inputHex": "220122"
+    },
+    {
+      "name": "overlong-utf8",
+      "inputHex": "22c0af22"
+    }
+  ]
+}

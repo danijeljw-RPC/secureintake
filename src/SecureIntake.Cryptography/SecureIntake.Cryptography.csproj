@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Protocol primitives, format codecs and test-vector support. No server I/O. -->
+  <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="libsodium" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Raw primitives (X25519, KEM, key wrap) are internal; only the unit tests and vector generator see them. -->
+    <InternalsVisibleTo Include="SecureIntake.UnitTests" />
+  </ItemGroup>
+</Project>

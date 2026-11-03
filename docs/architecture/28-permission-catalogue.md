@@ -12,6 +12,8 @@ This is the starting catalogue. It becomes `permissions.json`, a generated, vers
 
 No permission grants decryption. Cryptographic access always needs a recipient envelope.
 
+> **ADR-0004 applied (2026-11-03).** Service accounts never receive Elevated (E), Sensitive (X) or recovery-procedure permissions, whatever this table shows. So `platform.organisations.provision` (Provisioning Client) and `org.webhooks.manage` (API Client) are **blocked** and listed under `blockedForServiceAccounts` in `permissions.json`. A resolution is pending; see [ADR-0004](../adr/ADR-0004-service-accounts-hold-service-roles-only.md), Consequences.
+
 ## Platform scope
 
 | Permission | Level | Owner | Admin | SecAdmin | Operator | Auditor | Provisioning Client |

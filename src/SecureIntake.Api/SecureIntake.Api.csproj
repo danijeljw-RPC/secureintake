@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- HTTP endpoints, problem+json and the version header. No direct infrastructure access. -->
+  <PropertyGroup>
+    <EnableRequestDelegateGenerator>true</EnableRequestDelegateGenerator>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../SecureIntake.Application/SecureIntake.Application.csproj" />
+  </ItemGroup>
+</Project>

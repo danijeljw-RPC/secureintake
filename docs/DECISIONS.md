@@ -75,3 +75,16 @@ These resolve every item in [QUESTIONS.md](QUESTIONS.md). P-01 to P-04 follow yo
 | P-19 | Access | Permission catalogue v1 draft. Provisioning Client role added (Q-ACC-1, Q-ACC-2) | [28](architecture/28-permission-catalogue.md) |
 | P-20 | Defaults | All illustrative values replaced with Production and Hardened defaults (QUESTIONS §4) | [27](architecture/27-production-defaults.md) |
 | P-21 | Product | No billing ever. Uploaders never see outcomes. No telephone verification. en-AU, en-GB and en-US at launch | [QUESTIONS](QUESTIONS.md) |
+
+## Architecture decision records (from 2026-11-03)
+
+| ADR | Area | Decision |
+| --- | --- | --- |
+| [0001](adr/ADR-0001-repository-layout-and-build-rules.md) | Build | Solution layout, AOT and warnings-as-errors everywhere, enforced module references, generated permission catalogue |
+| [0002](adr/ADR-0002-libsodium-for-x25519.md) | Crypto | X25519 through direct libsodium bindings (NSec can't export the raw shared secret the combiner needs). **Accepted, crypto design reviewed** |
+| [0003](adr/ADR-0003-jcs-integer-only-profile.md) | Crypto | SI-JCS-1: canonical JSON accepts plain integer tokens only (±2^53 − 1); fractions, exponents and `-0` are rejected. **Accepted, crypto design reviewed** |
+| [0004](adr/ADR-0004-service-accounts-hold-service-roles-only.md) | Access | Service accounts hold only `provisioning_client` or `api_client` and never get Elevated or Sensitive permissions; host CLI restricted to listed operators and audited. **Accepted.** ⚑ Two doc 28 grants are now blocked |
+| [0005](adr/ADR-0005-postgres-runtime-role-and-audit-grants.md) | Data | Non-owner runtime role, forced RLS on tenant tables, append-only audit grants |
+| [0006](adr/ADR-0006-public-reference-check-symbol.md) | IDs | Public reference check symbol: weighted mod-32 over the nine random symbols |
+| [0007](adr/ADR-0007-production-migration-policy.md) | Data | Production migrations only via `secureintake migrate` with owner credentials, locked, logged and audited; `serve` reports Not Ready instead of migrating. **Accepted** |
+| S1 | Crypto | Provisional HKDF combiner kept (no X-Wing for now); byte-level S1 candidate values accepted pending review; any ciphertext-affecting change requires a new suite ([S1](specs/S1-si-e2ee-1.md)) |

@@ -2,6 +2,8 @@
 
 Status: **planning decision, 2026-11-03.** Answers [Q-GEN-7](../QUESTIONS.md), Q-KEY-1, Q-KEY-2, Q-KEY-3, Q-PRT-3, Q-FRM-2 and Q-EVD-2.
 
+> **Superseded in detail by [S1](../specs/S1-si-e2ee-1.md) (2026-11-03).** S1 is the byte-level definition of `SI-E2EE-1`. Where §2 below differs from it, S1 wins. Differences: separate content, nonce and commit keys; a defined `manifestDigest`; fixed-length key IDs; the recipient fingerprint in the wrap AAD; and the resume commitment. The HKDF combiner stays provisional, and X-Wing isn't adopted for now. Canonical JSON is [SI-JCS-1](../specs/SI-JCS-1-canonical-json.md).
+
 ## 1. Rule
 
 **No production release depends on unreviewed cryptography.** Internal alpha builds can run on draft specs, but only under the Development profile, which shows a "pre-review crypto" banner. Production and Hardened profiles refuse to start on a build whose `protocols.encryption` suite isn't marked `reviewed` in the release manifest.

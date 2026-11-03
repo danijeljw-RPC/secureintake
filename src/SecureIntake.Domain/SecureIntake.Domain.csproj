@@ -1,0 +1,3 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Entities, state machines and invariants. No I/O and no references to other SecureIntake projects. -->
+</Project>

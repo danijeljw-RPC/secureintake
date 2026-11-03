@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Database, storage, email, secrets and signing providers. Hand-written SQL, no EF Core (F3). -->
+  <ItemGroup>
+    <ProjectReference Include="../SecureIntake.Application/SecureIntake.Application.csproj" />
+    <ProjectReference Include="../SecureIntake.Cryptography/SecureIntake.Cryptography.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" />
+    <PackageReference Include="Npgsql" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Data/Migrations/**/*.sql" />
+  </ItemGroup>
+</Project>
