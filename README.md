@@ -30,7 +30,35 @@ dotnet run --project src/SecureIntake.Host -- serve            # http://127.0.0.
 dotnet run --project src/SecureIntake.Host -- audit verify
 ```
 
-Development keeps its database, token pepper and audit-checkpoint key in `./.secureintake/` (git-ignored). `secureintake help` lists every verb.
+Development keeps its database, token pepper and audit-checkpoint key in `.secureintake/` under the working directory (git-ignored). `dotnet run` starts the host in its project folder, so that is `src/SecureIntake.Host/.secureintake/`. Set `SECUREINTAKE__DataDirectory` to put it elsewhere, and use the same value for every command. `secureintake help` lists every verb. If port 8080 is taken, `serve` exits with code 6. Pass `--Http:Urls=http://127.0.0.1:8081` to use another port.
+
+### What works today
+
+**There is no web UI yet.** The upload portal (React) arrives in M2, and in-browser reviewing in M3 (roadmap, doc 25). Today you can run:
+
+- the host CLI
+- the HTTP API: platform organisations, dropboxes and health
+- the audit trail
+
+To try the API, run `serve` in one terminal and the following in another:
+
+```sh
+si() { dotnet run --project src/SecureIntake.Host -- "$@"; }
+ORG=$(si organisations list | awk '/acme/{print $1}')
+TOKEN=$(si service-accounts create-api-client --organisation "$ORG" --name demo \
+          --permissions org.dropboxes.view,org.dropboxes.manage | awk '/^token:/{print $2}')
+API=http://127.0.0.1:8080
+H=(-H "Authorization: Bearer $TOKEN" -H "SecureIntake-Api-Version: 2026-11")
+
+curl -s $API/health/ready                                    # {"status":"ready"}
+curl -s "${H[@]}" -H 'Content-Type: application/json' \
+     -d '{"name":"Client documents","slug":"client-docs"}' $API/api/organisations/$ORG/dropboxes/
+curl -s "${H[@]}" $API/api/organisations/$ORG/dropboxes/
+```
+
+The run step above also creates a platform `provisioner` token. With it, you can list organisations at `GET /api/platform/organisations/`. Creating one through the API returns 403 for now: see ADR-0004 and the open decision in [BUILD-STATUS](docs/BUILD-STATUS.md).
+
+The cryptography is built and tested but nothing calls it yet. SI-E2EE-1 in .NET and TypeScript has no upload or download path; that is M2.
 
 Outside Development:
 

@@ -1,6 +1,6 @@
 # Build Status
 
-Last updated 2026-11-03 (second pass: your review decisions applied). Nothing is committed yet; everything is in the working tree.
+Last updated 2026-11-03. The code is on branch `build/m0-m1-platform-skeleton`, with CI green on GitHub Actions.
 
 ## This pass: your decisions, and what changed
 
@@ -37,7 +37,18 @@ These are needed to make the encoding unambiguous; S1 §13 has the list.
 | Architecture tests | **18 / 18** (new: native interop confined; raw primitives non-public) |
 | TypeScript `crypto-protocol` (Node 26, WebCrypto, independent implementation) | **55 / 55**: all SI-E2EE-1 deterministic vectors, the hybrid vector's X25519 half, combiner and unwrap, 43 SI-JCS-1 vectors, and negative tests |
 | Native AOT publish (osx-arm64) | Clean, with no warnings. `migrate status`, `migrate`, operator auditing and the service-account refusal checked on the native binary |
-| CI workflow | **Still not run** (no GitHub remote). New `portal-crypto` job; the Alpine job now fails if any test is skipped |
+| CI workflow (GitHub Actions) | **11 / 11 jobs green**: catalogue, tests on Linux/macOS/Windows, Alpine ML-KEM (no skips allowed), PostgreSQL RLS suite, Native AOT for linux-x64/arm64, osx-arm64 and win-x64, and TypeScript vectors |
+| Manual end-to-end run | README flow from an empty data directory: migrate, create an organisation, platform and API-client tokens, `serve`, `/health/ready`, create and list a dropbox over HTTP, cross-organisation 403, bad token 401, `audit verify` (with a scheduler-signed checkpoint), clean SIGTERM shutdown |
+
+## What runs today
+
+There is **no web UI yet**. The upload portal is M2 and browser reviewing is M3 (doc 25). What runs:
+
+- the host CLI
+- the HTTP API: platform organisations, dropboxes and the health endpoints
+- the audit trail
+
+The README has a copy-paste walkthrough. The E2EE suite is implemented and tested on both sides, but nothing calls it until the M2 upload path exists.
 
 ## ⚑ Needs your decision
 
